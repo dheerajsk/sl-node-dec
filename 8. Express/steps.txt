@@ -1,0 +1,4 @@
+1. Install Pug (npm i pug)
+2. update server file to set view engine and views location
+3. Create pug file
+4. update controller to render view.

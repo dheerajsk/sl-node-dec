@@ -8,5 +8,7 @@ const router = express.Router();
 
 //3. Configure router
 router.get('/', productController.getProducts);
+router.get('/add', productController.getAddForm);
+router.post('/add', productController.addProduct)
 
 module.exports = router;
