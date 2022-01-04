@@ -16,5 +16,10 @@ module.exports = class Product{
     static add(product){
         products.push(product);
     }
+
+    static update(product){
+        const index = products.findIndex(p=> p.name==product.name);
+        products[index]=product;
+    }
 }
 
