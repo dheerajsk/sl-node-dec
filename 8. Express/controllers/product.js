@@ -1,5 +1,6 @@
 const Product = require("../models/product")
 
+const dbRepo = require("../repositories/productMongodb");
 
 // Read operation
 exports.getProducts = (req, res)=>{
@@ -19,8 +20,9 @@ exports.getUpdateForm = (req, res)=>{
 
 exports.addProduct = (req, res)=>{
     const product = new Product(req.body.name, req.body.detail, req.body.price);
-    Product.add(product);
-    res.render('list-product', {products: Product.getAll()});
+    dbRepo.add(product, ()=>{
+        res.render('list-product', {products: Product.getAll()});
+    })
 }
 
 exports.updateProduct = (req, res)=>{
