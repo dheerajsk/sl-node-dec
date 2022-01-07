@@ -7,3 +7,12 @@ exports.add = (product, callback)=>{
             callback();
         })
 }
+
+exports.getAll = (callback)=>{
+    const collection = db.getCollection("Products");
+    collection.find().toArray()
+        .then((products)=>{
+            callback(products);
+        });
+}
+
