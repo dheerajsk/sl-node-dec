@@ -18,7 +18,7 @@ html
                         td #{product.price}
                         td #{product.detail}
                         td 
-                            a(href="/product/update?name="+product.name class="btn btn-primary") Update
+                            a(href="/product/update?id="+product._id class="btn btn-primary") Update
                         td
                             a(href="/product/delete?name="+product.name class="btn btn-danger")
                                 i(class="bi bi-trash") Delete

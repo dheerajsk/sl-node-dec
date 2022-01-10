@@ -3,7 +3,8 @@
 const products=[];
 
 module.exports = class Product{
-    constructor(name, detail, price){
+    constructor(id, name, detail, price){
+        this._id = id;
         this.name = name;
         this.detail = detail;
         this.price = price;

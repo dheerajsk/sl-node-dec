@@ -15,13 +15,14 @@ exports.getAddForm = (req, res)=>{
 }
 
 exports.getUpdateForm = (req, res)=>{
-    var name = req.query.name;
-    var productToUpdate = Product.getAll().find(p=> p.name==name);
-    res.render('update-product', {product: productToUpdate});
+    var id = req.query.id;
+    dbRepo.get(id, (_product)=>{
+        res.render('update-product', {product: _product});
+    })
 }
 
 exports.addProduct = (req, res)=>{
-    const product = new Product(req.body.name, req.body.detail, req.body.price);
+    const product = new Product(null,req.body.name, req.body.detail, req.body.price);
     dbRepo.add(product, ()=>{
         dbRepo.getAll((items)=>{
             res.render('list-product', {products: items})
@@ -30,9 +31,10 @@ exports.addProduct = (req, res)=>{
 }
 
 exports.updateProduct = (req, res)=>{
-    var productToUpdate = Product.getAll().find(p=> p.name==req.body.name);
-    productToUpdate.detail = req.body.detail;
-    productToUpdate.price = req.body.price;
-    Product.update(productToUpdate);
-    res.render('list-product', {products: Product.getAll()});
+    const product = new Product(req.body.id,req.body.name, req.body.detail, req.body.price);
+    dbRepo.update(product, ()=>{
+        dbRepo.getAll((items)=>{
+            res.render('list-product', {products: items})
+        })
+    })
 }

@@ -4,9 +4,10 @@ html
     body 
         include header.pug
             form(method="POST", action="/product/update")
+                input(name="id", type="hidden", value=product._id)
                 div.mb-3
                     label.form-label(for="name") Name
-                    input.form-control(type="text" name="name" value=product.name readonly)
+                    input.form-control(type="text" name="name" value=product.name)
                 div.mb-3
                     label.form-label(for="details") Details
                     input.form-control(type="text" name="detail" value=product.detail)
